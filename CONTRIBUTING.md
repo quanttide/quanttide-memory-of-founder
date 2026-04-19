@@ -1,42 +1,65 @@
 # 维护指南
 
-## 资源
+## Skill 概览
 
-### 首页
+本目录将资产分类相关的工作流封装为 Skill，位于 `.agents/skills/` 目录：
 
-持续记录当前注意力焦点，以构建与 AI 对话的连续上下文。
+| Skill | 用途 | 路径 |
+|-------|------|------|
+| asset-classify | 资产分类 | [.agents/skills/asset-classify/SKILL.md](.agents/skills/asset-classify/SKILL.md) |
 
-已分类：已经处理好的想法。
-未分类：未处理好的想法。
+每个 Skill 的 `SKILL.md` 包含：name、description、规则、工作流步骤。
 
-### 日志
+## 使用 Skill
 
-日常思维流。
+Agent 会根据任务类型自动匹配对应的 Skill 并执行。
 
-### 蓝图
+## 维护 Skill
 
-一个具体要做成什么样子的描述。
+### 新建 Skill
 
-### 语境
+```bash
+mkdir -p .agents/skills/<name>
+# 创建 .agents/skills/<name>/SKILL.md
+```
 
-认知。
+SKILL.md 模板：
 
-### 愿景
+```markdown
+---
+name: <name>
+description: 功能描述。
+---
 
-一个想要什么样子的模糊描述。
+# <name>
 
-### 归档
+## 规则
 
-归档信息。
+- 必须遵守的约束
 
 ## 工作流
 
-## 捕捉：以日志为中心
+### 步骤名称
 
-想法以事件流的形式输出在默认日志。根据发现的规律再写到更合适的位置。
+操作步骤
+```
 
-### 规划：从愿景到蓝图
+### 修改 Skill
 
-1. 愿景：阐述模糊设想
-2. 语境：与AI展开
-3. 蓝图：明确具体的可执行方案
+直接编辑 `.agents/skills/<name>/SKILL.md`。
+
+### 删除 Skill
+
+```bash
+rm -rf .agents/skills/<name>
+```
+
+## 提交规范
+
+提交信息遵循 Conventional Commits 格式：
+
+| 类型 | 说明 |
+|------|------|
+| `docs` | 文档更新 |
+| `refactor` | 重构 |
+| `chore` | 构建/工具 |
