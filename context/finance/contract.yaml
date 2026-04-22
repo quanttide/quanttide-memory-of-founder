@@ -1,0 +1,138 @@
+# ==========================================================
+# 《基于财务报表事实的财务管理契约》
+# 视角：CFO / 财务总监 (经营与防守视角)
+# ==========================================================
+
+contract_metadata:
+  name: "CFO_Operational_Financial_Covenant"
+  version: "1.0.0"
+  effective_date: "2024-01-01"
+  parties:
+    owner: "董事会 / CEO"
+    guardian: "CFO / 财务总监"
+  data_source:
+    declaration: "本契约所有指标均以经审计/月度结账后的三大财务报表为唯一事实来源，拒绝任何管理口径的粉饰调整。"
+    primary_tables:
+      - "资产负债表"
+      - "利润表"
+      - "现金流量表"
+
+# ==========================================================
+# 第一章：生存与风险红线 (资产负债表驱动)
+# CFO视角：防范黑天鹅，确保极端情况下的生存底线，限制盲目加杠杆。
+# ==========================================================
+survival_red_lines:
+  debt_limits:
+    gross_gearing_ratio: # 资产负债率上限 (总负债/总资产)
+      threshold: 0.65    # 65%
+      action: "触发融资冻结，CFO行使一票否决权"
+      
+    net_debt_to_ebitda: # 净债务/息税折旧摊销前利润 (衡量真实偿债能力)
+      threshold: 3.0     # 3倍
+      warning_line: 2.5  # 预警线
+      action: "达到预警线停止新增长期借款；达到阈值强制启动资产剥离或债务重组"
+      
+    interest_coverage_ratio: # 利息保障倍数 (EBIT/利息费用)
+      threshold: 3.0      # 最低3倍
+      action: "低于3倍，暂停所有非核心资本开支(CAPEX)"
+
+  liquidity_bottom_lines: # 流动性底线
+    current_ratio:        # 流动比率
+      threshold: 1.2
+      action: "低于1.2，限制短期理财投资，全力回笼资金"
+      
+    cash_to_short_term_debt: # 现金短债比 (货币资金/短期有息负债)
+      threshold: 1.0       # 100%
+      action: "低于1.0为绝对红线，立即触发高管层危机应对会议"
+
+# ==========================================================
+# 第二章：资产质量与运转效率 (资产负债表与利润表交叉)
+# CFO视角：业务不能只做营收不管回款，资产必须是能转动的，拒绝"虚胖"。
+# ==========================================================
+efficiency_and_quality:
+  working_capital_rules:
+    days_sales_outstanding: # 应收账款周转天数 (DSO)
+      threshold: 90         # 天
+      target: 60            # 目标值
+      action: "超90天，暂停对超标客户/事业部的赊销额度，销售提成延后发放"
+      
+    inventory_turnover_days: # 存货周转天数
+      threshold: 120        # 天
+      action: "超120天，冻结新增采购计划，启动呆滞库存计提与折价清仓"
+
+    days_payable_outstanding: # 应付账款周转天数 (DPO)
+      guideline: "在不损害供应链安全的前提下，合理拉长DPO以占用无息杠杆"
+      threshold_max: 180    # 天 (防止信用破产)
+
+  asset_impairment_trigger: # 资产减值触发机制
+    rule: "任何单项资产账面价值超过其可收回金额，必须在当期计提减值，严禁跨期调节利润"
+
+# ==========================================================
+# 第三章：盈利与增长标尺 (利润表驱动)
+# CFO视角：必须赚"真金白银"，区分规模利润与核心业务利润，控制费用失控。
+# ==========================================================
+profitability_standards:
+  core_margins:
+    gross_profit_margin:    # 核心业务毛利率
+      threshold: 0.25       # 25%
+      action: "低于阈值，要求业务端提交产品定价策略调整或降本方案"
+      
+    ebitda_margin:          # 息税折旧摊销前利润率 (排除资本结构与折旧干扰的真实经营利润率)
+      threshold: 0.15       # 15%
+      action: "作为CEO及高管团队核心KPI考核基准"
+
+  expense_control:
+    selling_expense_ratio:  # 销售费用率 (销售费用/营业收入)
+      threshold: 0.20       # 20%
+      action: "超标部分按比例扣减下季度营销预算"
+      
+    admin_expense_ratio:    # 管理费用率
+      threshold: 0.10       # 10%
+      action: "实行零基预算(ZBB)重新审批"
+
+  non_operating_income_rule: # 非经常性损益约束
+    declaration: "计算核心业绩达成时，剔除政府补助、资产处置收益等非经常性损益，拒绝"卖资产保利润""
+
+# ==========================================================
+# 第四章：造血能力与资本配置 (现金流量表驱动)
+# CFO视角：利润不等于现金，自由现金流(FCF)是检验商业模式的终极标准。
+# ==========================================================
+cash_flow_mandatory:
+  operating_cash_flow:     # 经营性现金流量净额
+    rule_1: "必须为正数"
+    rule_2:                 # 经营现金流/净利润 (盈余现金保障倍数)
+      threshold: 1.0        # >= 1 (说明赚的利润都变成了钱)
+      action: "连续两个季度低于1，强制调整客户信用政策或压缩采购账期"
+
+  free_cash_flow:          # 自由现金流 (FCF = 经营现金流 - 资本开支)
+    rule: "年度累计FCF原则上必须为正"
+    exception_handling:     # 负FCF的例外审批
+      condition: "战略性新业务投入"
+      required_approval: "需董事会单独决议，且明确设定FCF转正的时间表(如按季度)"
+
+  dividend_payout_constraint: # 分红约束
+    rule: "当期累计未分配利润为负，或预计未来12个月将触碰债务红线时，CFO有权否决任何现金分红方案"
+
+# ==========================================================
+# 第五章：契约的执行与熔断机制
+# CFO视角：没有惩罚的契约只是一纸空文，CFO需要实质性的"刹车"权力。
+# ==========================================================
+enforcement_mechanism:
+  reporting_frequency: "月度快报触发预警，季度财报触发正式评估"
+  
+  early_warning_system:     # 黄灯机制
+    trigger: "任何指标触碰 warning_line"
+    action: "CFO向CEO发出书面质询函，业务负责人需在5个工作日内提交改善计划"
+
+  circuit_breaker:          # 熔断机制 (红灯)
+    trigger: "任何指标触碰 threshold (红线)"
+    actions:
+      - "自动冻结相关预算拨付"
+      - "CFO暂停审批该业务线相关支出"
+      - "强制召开最高管理层经营检讨会"
+      - "若连续两个报告期未改善，CFO有权向董事会提议罢免相关业务负责人"
+
+  cfo_veto_power:           # CFO一票否决权适用场景
+    - "触碰债务红线的新增投资/并购案"
+    - "降低核心业务毛利率以换取虚假营收规模的战略决策"
+    - "任何导致自由现金流出现非战略性负值的扩张计划"
