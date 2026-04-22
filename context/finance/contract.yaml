@@ -1,69 +1,86 @@
 # ==========================================
-# 纯技术视角：指标动态计算与规则引擎元模型
+# SaaS 级别：企业财务治理蓝图
+# 作用：与管理层对齐"这家公司怎么算账、怎么管业务"
 # ==========================================
 
-# 1. 数据源映射层 - 解耦底层表结构
-# 作用：告诉系统去哪里取"原子数据"，表名变了只改这里，不改代码
-data_source_mappings:
-  - alias: "BS_TOTAL_ASSETS"           # 系统内部统一代号
-    query: "SELECT SUM(amount) FROM balance_sheet WHERE item_code = 'A001' AND period = {period}"
+tenant_meta:
+  company_name: "某某科技有限公司"
+  industry_template: "制造业/商贸/SaaS/互联网" # 用于预置不同的初始模型
+
+# ==========================================
+# 第一层：财务基因 (解决"用什么规矩算账")
+# 这是整个系统的地基，决定了所有底层单据的流转逻辑
+# ==========================================
+financial_dna:
+  accounting_standards:
+    local_gaap: "CAS"          # 中国企业会计准则 / US GAAP / IFRS
+    reporting_currency: "CNY"  # 本位币
+    fiscal_year_start: "01-01" # 会计年度起始月
     
-  - alias: "BS_TOTAL_LIABILITIES"
-    query: "SELECT SUM(amount) FROM balance_sheet WHERE item_code = 'L001' AND period = {period}"
-    
-  - alias: "IS_NET_PROFIT"
-    query: "SELECT amount FROM income_statement WHERE item_code = 'P010' AND period = {period}"
+  basic_policies:
+    inventory_costing: "Weighted_Average" # 存货计价：先进先出/加权平均/个别计价
+    depreciation_method: "Straight_Line"  # 折旧方法：直线法/双倍余额递减
+    revenue_recognition: "Point_In_Time"  # 收入确认：时点法/时段法(新收入准则)
 
-# 2. 指标定义层 - 引入表达式引擎
-# 作用：不再写 if/else 计算逻辑，而是将公式存为字符串，由系统内置的表达式引擎（如 Aviator, QLExpress, Spring EL）动态解析执行
-indicator_definitions:
-  - indicator_code: "IND_GEARING_RATIO"
-    name: "资产负债率"
-    # 核心技术点：公式字符串化，引用上面定义的 alias
-    formula_expr: "${BS_TOTAL_LIABILITIES} / ${BS_TOTAL_ASSETS}"
-    # 核心技术点：计算时的技术处理策略
-    compute_strategy:
-      divide_by_zero_handler: "return_null" # 分母为0时返回空，而不是报错
-      precision: 4                        # 保留4位小数
-      format: "percentage"                # 输出格式化为百分比
+# ==========================================
+# 第二层：核算边界与编账规则 (解决"杂七杂八怎么变成报表")
+# 这是连接业务动作和财务报表的桥梁
+# ==========================================
+accounting_boundaries:
+  chart_of_accounts_design:
+    template: "一般企业通用科目体系"
+    custom_rules:
+      - "将原有【研发费用】从【管理费用】中单列一级科目"
+      - "增加【合同履约成本】一级科目以适应新收入准则"
 
-  - indicator_code: "IND_DSO"
-    name: "应收账款周转天数"
-    formula_expr: "(${BS_AR} / ${IS_REVENUE}) * 365"
-    compute_strategy:
-      divide_by_zero_handler: "return_infinity"
+  business_to_finance_mapping: # 业财转换规则（SaaS的核心价值）
+    procurement:
+      rule: "采购入库单匹配发票后，自动生成借：存货，贷：应付"
+      cost_allocation: "运费/装卸费按采购金额比例自动分摊入存货成本"
+      
+    sales:
+      rule: "根据出库单及客户签收，触发收入确认"
+      tax_handling: "价税分离，自动计算销项税额"
 
-# 3. 规则判定层 - 规则与指标彻底解耦
-# 作用：同一个指标（如资产负债率），可以挂载无数条不同的规则，且支持动态启停
-rule_definitions:
-  - rule_id: "RULE_001"
-    indicator_code: "IND_GEARING_RATIO" # 绑定哪个指标
-    is_active: true                      # 数据库开关，无需改代码即可停用规则
-    
-    # 核心技术点：条件表达式，交由规则引擎执行
-    condition_expr: "value > 0.65"       # 这里的 value 是 indicator_definitions 算出来的结果
-    
-    # 核心技术点：动作解耦，触发后执行什么（通过策略模式或事件总线实现）
-    action_config:
-      type: "WEBHOOK"                    # 可以是发消息、调接口、写日志等
-      payload: 
-        url: "http://risk-system.internal/api/alert"
-        body_template: "指标【${indicator_name}】当前值【${value}】突破阈值【0.65】"
+# ==========================================
+# 第三层：管理口径转换 (解决"老板看的东西和给税务局看的不一样")
+# SaaS 必须支持双账套/多维度视图
+# ==========================================
+management_accounting_bridge:
+  adjustments_rules: # 从"财务账"调整为"管理账"的规则
+    - name: "剔除非经常性损益"
+      description: "在计算核心利润时，系统自动剔除政府补助和资产处置收益"
+      
+    - name: "研发费用全口径还原"
+      description: "管理报表中，将计入损益的研发费用加回，统一视为资本化投入进行考核"
+      
+    - name: "总部费用分摊"
+      method: "按各业务线收入占比，将公共后台费用强制分摊至前端业务线利润表"
 
-  - rule_id: "RULE_002"
-    indicator_code: "IND_GEARING_RATIO"
-    is_active: false                     # 比如老板说这个规则暂时不用了，DBA改一下这个字段即可
-    condition_expr: "value > 0.60 && value <= 0.65"
-    action_config:
-      type: "LOG_AND_NOTIFY"
-      level: "WARN"
+# ==========================================
+# 第四层：经营指标与风控契约 (长在账务体系上的"果实")
+# 这里的指标，底层完全依赖前三层的算账逻辑
+# ==========================================
+operational_covenants:
+  
+  # ---- 经营健康度仪表盘 (老板视角的北极星指标) ----
+  health_metrics:
+    - metric_name: "经营性现金流净额"
+      source: "现金流量表 -> 经营活动产生"
+      management_adjustment: "使用【管理口径】调整后的现金流"
+      
+    - metric_name: "核心业务毛利率"
+      source: "利润表 -> 营业收入 / 营业成本"
+      management_adjustment: "剔除退货冲减，按订单交付确认口径计算"
 
-# 4. 契约实例层 - 运行时的拼装
-# 作用：CFO在界面上"拖拉拽"生成一份契约，本质上是将上面的元数据关联起来
-contract_instances:
-  - contract_id: "COV_2024_V1"
-    name: "2024年度基础风控契约"
-    included_rules: 
-      - "RULE_001"
-      - "RULE_003"
-      - "RULE_005"
+  # ---- 风控红线 (CFO视角的刹车系统) ----
+  risk_red_lines:
+    - metric_name: "资金安全垫 (现金短债比)"
+      source: "资产负债表 -> 货币资金 / 一年内到期非流动负债"
+      limit: ">= 1.2"
+      trigger_action: "SaaS 系统内【付款审批流】自动增加' CFO 特别复核'节点"
+
+    - metric_name: "客户信用敞口"
+      source: "管理账 -> 应收账款按账龄分析汇总"
+      limit: "账龄超90天占比 <= 15%"
+      trigger_action: "SaaS 系统【销售下单模块】自动拦截超标客户的赊销订单"
