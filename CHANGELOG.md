@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0] - 2026-04-25
+
+### Added
+- vision/qtcloud/qtcloud-think.md: 整合思考云产品愿景文档
+
+### Changed
+- vision/qtcloud/qtcloud-think.md: 整合 qtcloud-think 原始思考到结构化产品愿景
+
+### Structure
+- vision/qtcloud/qtcloud-think.md
+
 ## [0.1.0] - 2026-04-19
 
 ### Added
