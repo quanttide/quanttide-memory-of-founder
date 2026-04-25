@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1] - 2026-04-25
+
+### Changed
+
+- qtcloud-think.md: 重构愿景和蓝图分离
+  - vision/qtcloud/qtcloud-think.md: 定位、原则、哲学、交互设计、运行循环、独特价值、愿景
+  - roadmap/qtcloud/qtcloud-think.md: 工作流、核心功能、方法论、冷启动路径
+
 ## [0.2.0] - 2026-04-25
 
 ### Added
