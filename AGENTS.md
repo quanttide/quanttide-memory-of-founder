@@ -8,12 +8,6 @@
 
 ### Skill 索引
 
-| Skill | 用途 | 路径 |
-|-------|------|------|
-| [asset-classify](.agents/skills/asset-classify/SKILL.md) | 资产分类 | `.agents/skills/asset-classify/SKILL.md` |
-
----
-
 ## 快速索引
 
 | 任务 | 操作位置 |
