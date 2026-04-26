@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.2] - 2026-04-26
+
+### Changed
+
+- qtcloud-think.md: 重构愿景和蓝图分离
+  - vision/qtcloud/: 重构愿景层（default, qtadmin, qtcloud-* 系列）
+  - roadmap/qtcloud/qtcloud-think.md: 核心功能、方法论、冷启动路径
+  - tutorial/: 新增认知工程和驾驭工程教程
+  - cognitive_engineering.md: 认知工程方法论
+  - harness_engineering.md: 驾驭工程教程
+
+### Structure
+
+- Roadmap 结构调整: roadmap/ 目录结构优化
+- Vision 结构调整: 愿景层与蓝图层分离
+
 ## [0.2.1] - 2026-04-25
 
 ### Changed
