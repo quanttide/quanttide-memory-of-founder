@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.3.0] - 2026-04-29
+
+### Added
+
+- context/: 从 context 子仓库接收大量文档，集中存放语境层内容
+  - context/acadmics/, context/agent/, context/brand/, context/code/, context/course/
+  - context/fiction/, context/health/, context/hr/, context/infra/, context/knowl/
+  - context/media/, context/mkt/, context/product/, context/qtclass/, context/think/, context/write/
+- bylaw/org.md: 组织章程
+- context/think/: 新增 mental-models.md, situation-awareness.md, situation-level.md, refactor.md, role.md
+- context/write/: 新增 brochure-style.md, story-style.md（替换 style.md）
+- context/health/shame.md: 羞耻感分析
+- context/media/: 新增 content.md, growth.md, role.md, strategy.md, workflow.md
+- gallery/sdr-write-style.md: SDR 写作风格
+- profile/think_pattern.md: 思考模式文档
+
+### Removed
+
+- context/asset/category.md, context/asset/index.md
+- context/qtcloud-think/ixd.md
+- context/write/style.md（拆分为 brochure-style.md 和 story-style.md）
+- example/qtcloud-think/cogitive_prism.html
+
+### Changed
+
+- AGENTS.md: 更新工作原则
+- roadmap/qtcloud/qtcloud-think.md: 更新愿景与路线图
+
+### Daily
+
+- journal/: 2026-04-26 ~ 2026-04-29 日报归档
+
 ## [0.2.2] - 2026-04-26
 
 ### Changed
