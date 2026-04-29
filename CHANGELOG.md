@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.1] - 2026-04-29
+
+### Added
+
+- vision/default/: 新增 vision 层基础文档
+  - vision/default/index.md: 愿景总览
+  - vision/default/media.md: 媒体愿景
+  - vision/default/org.md: 组织愿景
+  - vision/default/pr.md: PR 策略
+  - vision/default/qtclass.md: QtClass 愿景
+  - vision/default/strategy.md: 战略愿景
+
 ## [0.3.0] - 2026-04-29
 
 ### Added
