@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.2] - 2026-05-06
+
+### Added
+
+- journal/2026-05-06.md: 新增日报
+
+### Removed
+
+- journal/default/, journal/product/, journal/game/, journal/qtcloud/: 归档至 archive 子仓库
+
 ## [0.4.1] - 2026-05-06
 
 ### Added
