@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.4.0] - 2026-05-05
+
+### Added
+
+- report/: 新增 report/write/ 和 report/default/，存放写作日志和日报
+- essay/agent/: 转移并整理 agent 相关文档
+- essay/think/: 新增认知工程文档
+- profile/write/: 新增写作风格文档
+- profile/game/: 新增游戏相关个人资料
+
+### Removed
+
+- report/default/: 将日报归档至 docs/archive 子仓库
+- report/write/2026-05-03.md: 归档写作日志
+- example/trouble.html, gallery/README.md, platform/README.md: 清理过时文件
+- bylaw/org.md: 移除组织章程
+- story/content-recommendation-algorithm.md: 移除内容推荐算法文档
+- roadmap/qtcloud/qtcloud-think.md: 蓝图移至 vision
+- vision/asset/, vision/media/: 移除废弃愿景资产
+
+### Changed
+
+- report/write/qtclass-platform-essay.md → report/write/2026-05-03.md: 文件命名规范化
+- roadmap/ → vision/: 蓝图内容迁移至愿景层
+- tutorial/harness_engineering.md → essay/agent/harness_engineering.md
+- tutorial/cognitive_engineering.md → essay/think/cogntive_engineering.md
+- gallery/write/sdr-style.md → profile/write/style.md
+
+### Daily
+
+- journal/: 2026-04-29 ~ 2026-05-05 日报归档
+
 ## [0.3.1] - 2026-04-29
 
 ### Added
