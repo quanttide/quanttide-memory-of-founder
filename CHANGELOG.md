@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.4.1] - 2026-05-06
+
+### Added
+
+- roadmap/: 新增书茂 App 评论视频蓝图
+- journal/media/2026-05-06.md: 新增媒体日报
+
+### Changed
+
+- journal/2026-05-05.md → journal/default/2026-05-05.md: 日报移至 default 子目录
+
+### Removed
+
+- ROADMAP.md: 移除已完成项
+
 ## [0.4.0] - 2026-05-05
 
 ### Added
