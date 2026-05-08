@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.3] - 2026-05-08
+
+### Added
+
+- journal/default/2026-05-06.md: 新增日报
+- journal/default/2026-05-07.md: 新增日报
+- journal/media/2026-05-06.md: 新增媒体日报
+- journal/qtconsult/2026-05-07.md: 新增咨询日报
+- index.md: 新增索引文档
+
 ## [0.4.2] - 2026-05-06
 
 ### Added
