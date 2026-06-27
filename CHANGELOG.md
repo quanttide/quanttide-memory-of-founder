@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.2] - 2026-06-28
+
+### Removed
+
+- `journal/default/`：27 篇 6 月日记归档至 `assets/archive/journal/default/`
+
+### Added
+
+- `journal/2026-06-28.md`：今日日记
+
 ## [0.5.1] - 2026-06-28
 
 ### Added
