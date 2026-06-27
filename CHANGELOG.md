@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.0] - 2026-06-27
+
+### Added
+
+- `journal/default/` 子目录，按来源组织日报
+- 6/19 ~ 6/27 日报
+- `library/motif.md` 和 `library/motif-vs-style.md` 文库文档
+- `context/write.md` 写作工作语境
+- `roadmap/qtcloud-write.md` 写作云蓝图
+
+### Changed
+
+- journal 目录结构改为按来源子目录分类
+
 ## [0.4.3] - 2026-05-08
 
 ### Added
