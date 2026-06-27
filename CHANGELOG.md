@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.5.1] - 2026-06-28
+
+### Added
+
+- `report/` 目录：存放项目状态报告（事实层），与 roadmap（方向层）分离
+  - `report/game/qtgame-war.md`：战旗游戏状态报告
+  - `report/game/qtgame-weiqi.md`：围棋游戏状态报告
+  - `report/fiction.md`：小说创作状态报告（骨架）
+
+### Changed
+
+- `roadmap/game/qtgame-war.md`：移除当前状态，按方向/事实分层重构，新增已决策/待决策节
+- `roadmap/game/qtgame-weiqi.md`：移除当前状态，引用 report
+- `AGENTS.md`：新增文档结构划分规范（roadmap vs report）
+
 ## [0.5.0] - 2026-06-27
 
 ### Added
