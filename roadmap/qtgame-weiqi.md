@@ -15,4 +15,4 @@
 
 ---
 
-当前状态见 {ref}`report/game/qtgame-weiqi`
+当前状态见 {ref}`report/qtgame-weiqi`
