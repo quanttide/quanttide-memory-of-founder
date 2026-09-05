@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.0] - 2026-08-10
+
+首个正式发布（1.0.0）：report 与 roadmap 目录结构扁平化后趋于稳定，后续遵循语义化版本规范，破坏性变更将单独声明。
+
+### Added
+
+- journal/: 2026-06-28 ~ 2026-08-09 日报
+- report/voice-input.md: 语音输入安装状态与硬件诊断报告
+- roadmap/voice-input.md: 语音输入路线图
+- roadmap/index.md: 路线图索引
+- context/: ai-native-work.md、fiction.md、meta.md、qtgame-war.md 语境文档
+
+### Changed
+
+- report/game/ 与 roadmap/game/ 目录扁平化（破坏性变更）
+  - report/game/qtgame-war.md → report/qtgame-war.md
+  - report/game/qtgame-weiqi.md → report/qtgame-weiqi.md
+  - roadmap/game/qtgame-war.md → roadmap/qtgame-war.md
+  - roadmap/game/qtgame-weiqi.md → roadmap/qtgame-weiqi.md
+- roadmap/qtgame-war.md: 路线图简化
+
+### Removed
+
+- roadmap/game/index.md
+
 ## [0.5.2] - 2026-06-28
 
 ### Removed
