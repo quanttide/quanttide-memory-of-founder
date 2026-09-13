@@ -27,3 +27,9 @@ elif signals.confidence < τ_mid and budget.left() > 0:
 
 GLM 适合发散，DeepSeek 适合对齐，Kimi 适合收敛。
 
+## 对齐
+
+对齐这个行为大体可以分为 3 个阶段：澄清、发散和收敛。DeepSeek、GLM 和 Kimi 分别是这 3 个阶段最合适的模型。
+
+其中，澄清阶段得到的通常是意图，发散阶段得到的是洞察，而收敛阶段得到的是路线图。
+
